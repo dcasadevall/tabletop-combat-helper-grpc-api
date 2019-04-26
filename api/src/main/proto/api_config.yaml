@@ -1,0 +1,29 @@
+#
+# A Campaigns Service API configuration.
+#
+
+# The configuration schema is defined by service.proto file
+# https://github.com/googleapis/googleapis/blob/master/google/api/service.proto
+type: google.api.Service
+config_version: 3
+
+#
+# Name of the service configuration.
+#
+name: tabletopcombathelper.campaigns.tabletop-combat-helper.cloud.goog
+
+#
+# API title to appear in the user interface (Google Cloud Console).
+#
+title: Tabletop Combat Helper Campaigns gRPC API
+apis:
+- name: tabletopcombathelper.campaigns.CampaignService
+
+#
+# API usage restrictions.
+#
+usage:
+  rules:
+  # ListCampaigns method can be called without an API Key.
+  - selector: tabletopcombathelper.campaigns.CampaignService.ListCampaigns
+    allow_unregistered_calls: true
