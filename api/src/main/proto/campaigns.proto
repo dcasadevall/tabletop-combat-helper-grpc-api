@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package tabletopcombathelper.campaigns;
+
+option java_multiple_files = true;
+option java_package = "com.dcasadevall.tabletopcombathelper.campaigns";
+
+
+import "google/protobuf/empty.proto";
+
+// Provides administration of campaigns.
+service CampaignsAdminService {
+  // Returns a list of all the campaigns.
+  rpc ListCampaigns(google.protobuf.Empty) returns (ListCampaignsResponse) {}
+  // Creates a new campaign.
+  rpc SaveCampaign(SaveCampaignRequest) returns (Campaign) {}
+  // Deletes an existing campaign.
+  rpc DeleteCampaign(DeleteCampaignRequest) returns (google.protobuf.Empty) {}
+}
+
+service CampaignsService {
+  // Returns a list of all the campaigns.
+  rpc ListCampaigns(google.protobuf.Empty) returns (ListCampaignsResponse) {}
+}
+
+// A campaign resource.
+message Campaign {
+  // A unique campaign id.
+  string campaignId = 1;
+  // Name of the campaign
+  string name = 2;
+}
+
+// Response to ListCampaigns call.
+message ListCampaignsResponse {
+  // Campaigns in the service.
+  repeated Campaign campaigns = 1;
+}
+
+// Request message for SaveCampaign method.
+message SaveCampaignRequest {
+  // The campaign resource to create.
+  Campaign campaign = 1;
+}
+
+// Request message for DeleteCampaign method.
+message DeleteCampaignRequest {
+  // The ID of the campaign to delete.
+  string campaignId = 1;
+}
