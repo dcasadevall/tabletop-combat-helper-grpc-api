@@ -9,22 +9,22 @@ option java_package = "com.dcasadevall.tabletopcombathelper.campaigns";
 import "google/protobuf/empty.proto";
 
 // Provides administration of campaigns.
-service CampaignsAdminService {
+service CampaignAdminService {
   // Returns a list of all the campaigns.
   rpc ListCampaigns(google.protobuf.Empty) returns (ListCampaignsResponse) {}
   // Creates a new campaign.
-  rpc SaveCampaign(SaveCampaignRequest) returns (Campaign) {}
+  rpc SaveCampaign(SaveCampaignRequest) returns (CampaignProto) {}
   // Deletes an existing campaign.
   rpc DeleteCampaign(DeleteCampaignRequest) returns (google.protobuf.Empty) {}
 }
 
-service CampaignsService {
+service CampaignService {
   // Returns a list of all the campaigns.
   rpc ListCampaigns(google.protobuf.Empty) returns (ListCampaignsResponse) {}
 }
 
 // A campaign resource.
-message Campaign {
+message CampaignProto {
   // A unique campaign id.
   string campaignId = 1;
   // Name of the campaign
@@ -34,13 +34,13 @@ message Campaign {
 // Response to ListCampaigns call.
 message ListCampaignsResponse {
   // Campaigns in the service.
-  repeated Campaign campaigns = 1;
+  repeated CampaignProto campaigns = 1;
 }
 
 // Request message for SaveCampaign method.
 message SaveCampaignRequest {
   // The campaign resource to create.
-  Campaign campaign = 1;
+  CampaignProto campaign = 1;
 }
 
 // Request message for DeleteCampaign method.
