@@ -15,6 +15,10 @@ import java.util.stream.Collectors;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+/**
+ * Grpc service to fulfill {@link CampaignServiceImplBase} methods by using the
+ * {@link CampaignRequestHandler}.
+ */
 @Singleton
 public class CampaignService extends CampaignServiceImplBase {
   private final CampaignRequestHandler campaignRequestHandler;
@@ -69,7 +73,7 @@ public class CampaignService extends CampaignServiceImplBase {
       DeleteCampaignRequest request, StreamObserver<Empty> responseObserver) {
     try {
       boolean success = this.campaignRequestHandler.deleteCampaign(request.getCampaignId());
-      if (success) {
+      if (!success) {
         responseObserver.onError(new Exception("Error deleting campaign."));
         return;
       }
