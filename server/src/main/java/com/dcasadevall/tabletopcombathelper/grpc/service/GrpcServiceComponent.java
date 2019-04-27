@@ -1,7 +1,6 @@
-package com.dcasadevall.tabletopcombathelper;
+package com.dcasadevall.tabletopcombathelper.grpc.service;
 
 import com.dcasadevall.tabletopcombathelper.campaigns.CampaignModule;
-import com.dcasadevall.tabletopcombathelper.campaigns.CampaignService;
 import dagger.Component;
 import javax.inject.Singleton;
 
@@ -11,6 +10,6 @@ import javax.inject.Singleton;
         CampaignModule.class,
     }
 )
-public interface FrontendServerComponent {
+public interface GrpcServiceComponent {
   CampaignService getCampaignService();
 }

@@ -1,1 +1,1 @@
-include "api", "common", "admin", "frontend"
+include "api", "server"

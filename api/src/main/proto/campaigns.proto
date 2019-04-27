@@ -9,18 +9,13 @@ option java_package = "com.dcasadevall.tabletopcombathelper.campaigns";
 import "google/protobuf/empty.proto";
 
 // Provides administration of campaigns.
-service CampaignAdminService {
+service CampaignService {
   // Returns a list of all the campaigns.
   rpc ListCampaigns(google.protobuf.Empty) returns (ListCampaignsResponse) {}
   // Creates a new campaign.
   rpc SaveCampaign(SaveCampaignRequest) returns (CampaignProto) {}
   // Deletes an existing campaign.
   rpc DeleteCampaign(DeleteCampaignRequest) returns (google.protobuf.Empty) {}
-}
-
-service CampaignService {
-  // Returns a list of all the campaigns.
-  rpc ListCampaigns(google.protobuf.Empty) returns (ListCampaignsResponse) {}
 }
 
 // A campaign resource.

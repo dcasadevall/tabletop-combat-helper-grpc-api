@@ -1,5 +1,13 @@
-package com.dcasadevall.tabletopcombathelper.campaigns;
+package com.dcasadevall.tabletopcombathelper.grpc.service;
 
+import com.dcasadevall.tabletopcombathelper.campaigns.Campaign;
+import com.dcasadevall.tabletopcombathelper.campaigns.CampaignProto;
+import com.dcasadevall.tabletopcombathelper.campaigns.CampaignRequestHandler;
+import com.dcasadevall.tabletopcombathelper.campaigns.CampaignServiceGrpc.CampaignServiceImplBase;
+import com.dcasadevall.tabletopcombathelper.campaigns.DeleteCampaignRequest;
+import com.dcasadevall.tabletopcombathelper.campaigns.ListCampaignsResponse;
+import com.dcasadevall.tabletopcombathelper.campaigns.ProtobufCampaignAdapter;
+import com.dcasadevall.tabletopcombathelper.campaigns.SaveCampaignRequest;
 import com.google.protobuf.Empty;
 import io.grpc.stub.StreamObserver;
 import java.util.Collection;
@@ -8,11 +16,11 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 @Singleton
-public class CampaignAdminService extends CampaignAdminServiceGrpc.CampaignAdminServiceImplBase {
+public class CampaignService extends CampaignServiceImplBase {
   private final CampaignRequestHandler campaignRequestHandler;
 
   @Inject
-  public CampaignAdminService(CampaignRequestHandler campaignRequestHandler) {
+  public CampaignService(CampaignRequestHandler campaignRequestHandler) {
     this.campaignRequestHandler = campaignRequestHandler;
   }
 
