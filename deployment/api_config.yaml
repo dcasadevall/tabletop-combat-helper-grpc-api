@@ -22,8 +22,7 @@ apis:
 #
 # API usage restrictions.
 #
-#usage:
-#  rules:
-#  # ListCampaigns method can be called without an API Key.
-#  - selector: endpoints.tabletopcombathelper.campaigns.CampaignService.ListCampaigns
-#    allow_unregistered_calls: true
+usage:
+  rules:
+  - selector: endpoints.tabletopcombathelper.campaigns.CampaignService.ListCampaigns
+    allow_unregistered_calls: true

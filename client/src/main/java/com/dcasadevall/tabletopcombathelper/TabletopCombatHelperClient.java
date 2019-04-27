@@ -37,11 +37,15 @@ public final class TabletopCombatHelperClient {
     String host = params.getOptionValue("host", "localhost");
     String port = params.getOptionValue("port", "8000");
     String address = String.format("%s:%s", host, port);
+    String apiKey = params.getOptionValue("api_key", null);
 
     // Create gRPC stub.
-    CampaignServiceGrpc.CampaignServiceBlockingStub stub =
-        CampaignServiceGrpc.newBlockingStub(
-            ManagedChannelBuilder.forTarget(address).usePlaintext(true).build());
+    ManagedChannelBuilder channelBuilder = ManagedChannelBuilder.forTarget(address).usePlaintext(true);
+    if (apiKey != null) {
+      channelBuilder.intercept(new ApiKeyClientInterceptor(apiKey));
+    }
+
+    CampaignServiceGrpc.CampaignServiceBlockingStub stub = CampaignServiceGrpc.newBlockingStub(channelBuilder.build());
 
     if ("listCampaigns".equals(operation)) {
       listCampaigns(stub);
@@ -118,7 +122,7 @@ public final class TabletopCombatHelperClient {
             .longOpt("host")
             .desc(String.format("Host to be used. By default: %s", DEFAULT_HOST))
             .hasArg()
-            .argName("h")
+            .argName("host")
             .type(String.class)
             .build());
 
@@ -127,7 +131,16 @@ public final class TabletopCombatHelperClient {
             .longOpt("port")
             .desc(String.format("Port to be used. By default: %s", DEFAULT_PORT))
             .hasArg()
-            .argName("p")
+            .argName("port")
+            .type(String.class)
+            .build());
+
+    options.addOption(
+        Option.builder()
+            .longOpt("api_key")
+            .desc("Api key to use for authentication. Unused by default")
+            .hasArg()
+            .argName("api key")
             .type(String.class)
             .build());
 
