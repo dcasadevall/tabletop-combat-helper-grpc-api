@@ -10,20 +10,20 @@ config_version: 3
 #
 # Name of the service configuration.
 #
-name: tabletopcombathelper.campaigns.tabletop-combat-helper.cloud.goog
+name: tch-api.endpoints.tabletop-combat-helper.cloud.goog
 
 #
 # API title to appear in the user interface (Google Cloud Console).
 #
-title: Tabletop Combat Helper Campaigns gRPC API
+title: Tabletop Combat Helper gRPC API
 apis:
-- name: tabletopcombathelper.campaigns.CampaignService
+- name: endpoints.tabletopcombathelper.campaigns.CampaignService
 
 #
 # API usage restrictions.
 #
-usage:
-  rules:
-  # ListCampaigns method can be called without an API Key.
-  - selector: tabletopcombathelper.campaigns.CampaignService.ListCampaigns
-    allow_unregistered_calls: true
+#usage:
+#  rules:
+#  # ListCampaigns method can be called without an API Key.
+#  - selector: endpoints.tabletopcombathelper.campaigns.CampaignService.ListCampaigns
+#    allow_unregistered_calls: true
