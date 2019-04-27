@@ -18,7 +18,8 @@ import org.apache.commons.cli.ParseException;
 
 /** A client application which calls the Tabletop Combat Helper API over gRPC. */
 public final class TabletopCombatHelperClient {
-  private static final String DEFAULT_ADDRESS = "localhost:8000";
+  private static final String DEFAULT_HOST = "localhost";
+  private static final String DEFAULT_PORT = "8000";
 
   public static void main(String[] args) throws Exception {
     Options options = createOptions();
@@ -33,11 +34,14 @@ public final class TabletopCombatHelperClient {
     }
 
     String operation = params.getOptionValue("operation", "list");
+    String host = params.getOptionValue("host", "localhost");
+    String port = params.getOptionValue("port", "8000");
+    String address = String.format("%s:%s", host, port);
 
     // Create gRPC stub.
     CampaignServiceGrpc.CampaignServiceBlockingStub stub =
         CampaignServiceGrpc.newBlockingStub(
-            ManagedChannelBuilder.forTarget(DEFAULT_ADDRESS).usePlaintext(true).build());
+            ManagedChannelBuilder.forTarget(address).usePlaintext(true).build());
 
     if ("listCampaigns".equals(operation)) {
       listCampaigns(stub);
@@ -106,6 +110,24 @@ public final class TabletopCombatHelperClient {
             .hasArg()
             .required()
             .argName("op")
+            .type(String.class)
+            .build());
+
+    options.addOption(
+        Option.builder()
+            .longOpt("host")
+            .desc(String.format("Host to be used. By default: %s", DEFAULT_HOST))
+            .hasArg()
+            .argName("h")
+            .type(String.class)
+            .build());
+
+    options.addOption(
+        Option.builder()
+            .longOpt("port")
+            .desc(String.format("Port to be used. By default: %s", DEFAULT_PORT))
+            .hasArg()
+            .argName("p")
             .type(String.class)
             .build());
 
