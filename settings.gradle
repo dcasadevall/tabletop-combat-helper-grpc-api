@@ -1,1 +1,1 @@
-include "api", "server"
+include "api", "server", "client"

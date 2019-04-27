@@ -1,0 +1,11 @@
+# [START swagger]
+swagger: "2.0"
+info:
+  description: "Endpoints configuration for our Tabletop Combat Helper API"
+  title: "Tabletop Combat Helper Endpoints"
+  version: "1.0.0"
+host: "campaignservice.endpoints.tabletop-combat-helper.cloud.goog"
+# [END swagger]
+x-google-endpoints:
+- name: "campaignservice.endpoints.tabletop-combat-helper.cloud.goog"
+  target: "34.83.197.70"

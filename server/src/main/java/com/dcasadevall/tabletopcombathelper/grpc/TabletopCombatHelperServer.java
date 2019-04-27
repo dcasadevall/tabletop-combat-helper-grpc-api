@@ -9,7 +9,6 @@ public final class TabletopCombatHelperServer {
   private static final int DEFAULT_PORT = 8000;
 
   public static void main(String[] args) throws Exception {
-
     GrpcServer.start(
         DEFAULT_PORT,
         new BindableService[] {DaggerGrpcServiceComponent.create().getCampaignService()},
