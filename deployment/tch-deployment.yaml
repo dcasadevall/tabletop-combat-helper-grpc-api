@@ -28,17 +28,25 @@ spec:
       labels:
         app: esp-tabletop-combat-helper-api
     spec:
+      volumes:
+      - name: service-account-creds
+        secret:
+          secretName: service-account-creds
       containers:
       - name: esp
         image: gcr.io/endpoints-release/endpoints-runtime:1.16.0
         args: [
           "--http2_port=9000",
-          "--service=tch-api",
+          "--service=tch-api.endpoints.tabletop-combat-helper.cloud.goog",
           "--rollout_strategy=managed",
           "--backend=grpc://127.0.0.1:8000"
         ]
         ports:
           - containerPort: 9000
+        volumeMounts:
+        - name: service-account-creds
+          mountPath: /etc/nginx/creds
+          readOnly: true
       - name: tch-api
         image: gcr.io/tabletop-combat-helper/tch-api:1
         ports:
