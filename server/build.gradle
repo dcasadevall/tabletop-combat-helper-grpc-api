@@ -5,7 +5,7 @@ plugins {
 
 apply plugin: 'application'
 
-mainClassName = "com.dcasadevall.tabletopcombathelper.AdminServer"
+mainClassName = "com.dcasadevall.tabletopcombathelper.grpc.TabletopCombatHelperServer"
 
 jar {
   manifest {
