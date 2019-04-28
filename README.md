@@ -1,3 +1,11 @@
+# DEPRECATED
+
+One should use https://github.com/dcasadevall/tabletop-combat-helper-api instead.
+The reason for the switch to a PHP / MySQL implementation is due to simplicity and ease of hosting (also cost).
+
+Though this repository has more bells and whistles (gRPC, cloud hosted deployment, etc..) it is not really practical
+for the use that we will give it. Specially given the hosting costs. 
+
 # Grpc backend for the tabletop helper admin
 
 This project contains the source for a backend gRPC API used to store assets and configuration data
